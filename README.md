@@ -26,7 +26,9 @@ cd mcp-agent-app
 
 python3 -m venv venv
 source venv/bin/activate       # Mac/Linux
-# OR
+
+**OR**
+
 venv\Scripts\activate          # Windows
 
 ### 3. Install Required Packages
