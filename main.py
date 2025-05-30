@@ -3,7 +3,7 @@ import aiohttp
 import psycopg
 from urllib.parse import quote
 
-# --- 🔐 Configuration ---
+# 🔐 Configuration 
 TAVILY_API_KEY = "Enter Key"
 PG_USER = "postgres"
 PG_PASSWORD = "admin1234"
@@ -15,7 +15,7 @@ PG_DB = "postgres"
 pg_password_escaped = quote(PG_PASSWORD)
 POSTGRES_URL = f"postgresql://{PG_USER}:{pg_password_escaped}@{PG_HOST}:{PG_PORT}/{PG_DB}"
 
-# --- 🛠 Create table and insert query ---
+#  🛠 Create table and insert query ---
 CREATE_TABLE_SQL = """
 CREATE TABLE IF NOT EXISTS tavily_results (
     id SERIAL PRIMARY KEY,
@@ -30,7 +30,7 @@ INSERT_SQL = """
 INSERT INTO tavily_results (query, url, content) VALUES (%s, %s, %s);
 """
 
-# --- 🔍 Tavily search ---
+#  🔍 Tavily search 
 async def search_tavily(query: str, max_results: int = 5):
     url = "https://api.tavily.com/search"
     headers = {"Content-Type": "application/json"}
@@ -47,7 +47,7 @@ async def search_tavily(query: str, max_results: int = 5):
                 raise Exception(f"Tavily error: {resp.status}")
             return (await resp.json())["results"]
 
-# --- 💾 Store to Postgres ---
+# 💾 Store to Postgres 
 def store_results(query, results):
     with psycopg.connect(POSTGRES_URL) as conn:
         with conn.cursor() as cur:
