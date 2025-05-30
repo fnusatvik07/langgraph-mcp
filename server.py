@@ -25,7 +25,7 @@ async def search_web(query: str, max_results: int = 5) -> list:
             data = await resp.json()
             return data["results"]
 
-# --- 📂 PostgreSQL Storage Tool ---
+# 📂 PostgreSQL Storage Tool 
 @mcp.tool()
 def store_to_db(query: str, results: list) -> str:
     """Store Tavily results in PostgreSQL."""
